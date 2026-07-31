@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>토니모리 20주년 팝업스토어 성과 보고서</title>
+  <title>TONYMOLY 20주년 팝업스토어 성과 리포트</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css" />
   <style>
@@ -45,15 +45,18 @@
       border-bottom: 2px solid var(--accent);
       margin-bottom: 30px;
     }
+    
+    /* REVISED LOGO: Vively Clean Style */
     .brand-logo {
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      background: #000;
-      color: #fff;
-      padding: 4px 12px;
-      display: inline-block;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      color: #000;
+      text-transform: lowercase;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      line-height: 1;
     }
+    
     .live-status {
       display: inline-flex;
       align-items: center;
@@ -159,6 +162,7 @@
     }
     .insight strong { color: #000; font-weight: 700; }
 
+    /* Chart Container Box */
     .chart-box {
       position: relative;
       width: 100%;
@@ -168,36 +172,45 @@
       justify-content: center;
     }
 
-    /* Swipeable Carousel Containers */
+    /* Carousel Slider Containers */
     .carousel-container {
       width: 100%;
-      overflow-x: auto;
-      scroll-behavior: smooth;
+      overflow: hidden;
       position: relative;
       margin-top: 15px;
       border-radius: var(--radius);
       padding: 10px 0;
-      cursor: grab;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
     }
-    .carousel-container::-webkit-scrollbar {
-      display: none;
-    }
-    .carousel-container:active {
-      cursor: grabbing;
-    }
-    
     .carousel-track {
       display: flex;
       gap: 16px;
       width: max-content;
-      user-select: none;
+      animation: scroll 25s linear infinite;
+    }
+    .carousel-track-landscape {
+      display: flex;
+      gap: 16px;
+      width: max-content;
+      animation: scroll-landscape 30s linear infinite;
+    }
+    
+    .carousel-container:hover .carousel-track,
+    .carousel-container:hover .carousel-track-landscape {
+      animation-play-state: paused;
+    }
+    
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(calc(-220px * 9 - 16px * 9)); }
+    }
+    @keyframes scroll-landscape {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(calc(-320px * 9 - 16px * 9)); }
     }
 
-    /* Vertical Reels Card (8 items, 9:16) */
+    /* Reels Vertical Card (9:16) */
     .reel-card {
-      width: 200px;
+      width: 220px;
       aspect-ratio: 9 / 16;
       border: 1.5px solid var(--line-strong);
       border-radius: var(--radius-sm);
@@ -209,19 +222,21 @@
       position: relative;
       overflow: hidden;
       flex-shrink: 0;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, border-color 0.3s ease;
     }
-    .reel-card:hover { transform: scale(1.02); }
+    .reel-card:hover {
+      transform: scale(1.03);
+      border-color: #000;
+    }
     .reel-card video {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      pointer-events: none;
     }
 
-    /* Landscape Card (9 items, 1.91:1) */
+    /* Landscape Video Card (1.91:1 Ratio) */
     .landscape-card {
       width: 320px;
       aspect-ratio: 1.91 / 1;
@@ -235,23 +250,25 @@
       position: relative;
       overflow: hidden;
       flex-shrink: 0;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, border-color 0.3s ease;
     }
-    .landscape-card:hover { transform: scale(1.02); }
+    .landscape-card:hover {
+      transform: scale(1.03);
+      border-color: #000;
+    }
     .landscape-card video {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      pointer-events: none;
     }
 
-    .video-badge {
+    .reel-badge {
       position: absolute;
       top: 10px;
       left: 10px;
-      background: rgba(0,0,0,0.75);
+      background: rgba(0,0,0,0.7);
       color: #fff;
       font-size: 10px;
       font-weight: 700;
@@ -259,23 +276,23 @@
       border-radius: 4px;
       z-index: 2;
     }
-    .video-placeholder {
+    .reel-placeholder {
       text-align: center;
       color: var(--subtle);
       font-size: 12px;
       padding: 10px;
     }
     .play-icon {
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       background: rgba(0,0,0,0.6);
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 6px;
-      font-size: 13px;
+      margin-bottom: 8px;
+      font-size: 14px;
     }
 
     /* Table Styling */
@@ -308,16 +325,17 @@
   <div class="report">
     <!-- TOP BAR -->
     <div class="top-bar">
-      <div class="brand-logo">TONYMOLY</div>
+      <!-- REVISED: vively logo -->
+      <div class="brand-logo">vively</div>
       <div class="live-status">
-        <span class="live-dot"></span> 라이브 대시보드 연결됨
+        <span class="live-dot"></span> LIVE DASHBOARD CONNECTED
       </div>
     </div>
 
     <!-- HERO -->
     <section class="hero">
-      <div class="eyebrow">20주년 팝업스토어 · 캠페인 성과 보고서</div>
-      <h1 class="title">토니모리 20주년 팝업스토어<br />인스타그램 바이럴 성과 리포트</h1>
+      <div class="eyebrow">20th Anniversary Pop-Up Store · Campaign Performance Report</div>
+      <h1 class="title">TONYMOLY 20주년 팝업스토어<br />인스타그램 바이럴 성과 리포트</h1>
       <div class="subtitle">
         20주년 팝업스토어 인스타그램 글로벌 바이럴 캠페인 실시간 성과 측정 리포트
       </div>
@@ -325,55 +343,55 @@
 
     <!-- 01 KEY RESULTS -->
     <section class="section">
-      <h2><span class="num">01 — 핵심 성과 요약</span>핵심 성과 요약 (KPI)</h2>
+      <h2><span class="num">01 — KEY RESULTS</span>핵심 성과 요약 (KPI)</h2>
       <div class="section-intro">
-        조회수, 도달 규모, 글로벌 크리에이터 성별 및 라이브 동적 실시간 참여 반응 수치입니다.
+        View당 지급 단가(PVV), 도달 규모, 글로벌 크리에이터 성별 및 라이브 동적 실시간 참여 반응 수치입니다.
       </div>
       
       <div class="grid-4">
         <!-- 1. Total Creators -->
         <div class="card kpi hot">
-          <div class="kpi-label">참여 크리에이터 <span class="tag">확정</span></div>
-          <div class="kpi-value">8명</div>
-          <div class="kpi-note">글로벌 인플루언서 8인 참여</div>
+          <div class="kpi-label">참여 크리에이터 <span class="tag">CONFIRMED</span></div>
+          <div class="kpi-value">9명</div>
+          <div class="kpi-note">글로벌 인플루언서 9인 참여</div>
         </div>
 
         <!-- 2. Gender -->
         <div class="card kpi hot">
-          <div class="kpi-label">크리에이터 성별 <span class="tag">타겟</span></div>
+          <div class="kpi-label">크리에이터 성별 <span class="tag">TARGET</span></div>
           <div class="kpi-value">여성</div>
           <div class="kpi-note">여성 타겟 뷰티 크리에이터 100%</div>
         </div>
 
         <!-- 3. Live Viewers -->
         <div class="card kpi hot">
-          <div class="kpi-label">총 조회수 <span class="tag green"><span class="live-dot"></span> 실시간</span></div>
+          <div class="kpi-label">총 조회수 (VIEWERS) <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
           <div class="kpi-value" id="kpi-viewers">40,300</div>
-          <div class="kpi-note">실시간 조회수 증가 중 (기본 40,300+)</div>
+          <div class="kpi-note">실시간 조회수 증가 중 (Base 40,300+)</div>
         </div>
 
         <!-- 4. Live Likes -->
         <div class="card kpi hot">
-          <div class="kpi-label">총 좋아요 <span class="tag green"><span class="live-dot"></span> 실시간</span></div>
+          <div class="kpi-label">총 좋아요 (LIKES) <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
           <div class="kpi-value" id="kpi-likes">1,350</div>
-          <div class="kpi-note">실시간 반응 수치 증가 중 (기본 1,350+)</div>
+          <div class="kpi-note">실시간 반응 수치 증가 중 (Base 1,350+)</div>
         </div>
       </div>
 
       <div class="insight">
-        <strong>주요 인사이트</strong> — 총 8명의 여성 글로벌 크리에이터가 참여하여 팝업스토어 현장 체험 콘텐츠를 제작했으며, 실시간 참여 지표가 지속적으로 상승하고 있습니다.
+        <strong>주요 인사이트</strong> — 총 9명의 여성 글로벌 크리에이터가 참여하여 팝업스토어 현장 체험 콘텐츠를 제작했으며, Real-time engagement 지표가 지속적으로 상승하고 있습니다.
       </div>
     </section>
 
     <!-- 02 CAMPAIGN OVERVIEW -->
     <section class="section">
-      <h2><span class="num">02 — 캠페인 개요</span>캠페인 개요 &amp; 국가별 분석</h2>
+      <h2><span class="num">02 — CAMPAIGN OVERVIEW</span>캠페인 개요 &amp; 국적 분석</h2>
       <div class="section-intro">
-        구글 스프레드시트에 등록된 크리에이터의 국가 분포 및 현장 비주얼 슬라이드입니다.
+        구글 스프레드시트에 등록된 9명 크리에이터의 국가 분포 및 콘텐츠 슬라이드 애니메이션입니다.
       </div>
 
       <div class="grid-2">
-        <!-- LEFT: PIE CHART -->
+        <!-- LEFT: PIE CHART FOR NATIONALITY -->
         <div class="card">
           <div class="case-title" style="font-size: 18px; font-weight:800; margin-bottom: 14px;">크리에이터 국가 분포</div>
           <div class="chart-box">
@@ -385,10 +403,10 @@
         <div class="card">
           <div class="case-title" style="font-size: 18px; font-weight:800; margin-bottom: 14px;">캠페인 실행 요약</div>
           <ul style="padding-left: 18px; font-size: 14px; margin-bottom: 20px;">
-            <li style="margin-bottom:8px;"><strong>캠페인명:</strong> 토니모리 20주년 팝업스토어 글로벌 바이럴</li>
-            <li style="margin-bottom:8px;"><strong>참여 인원:</strong> 8명 (전원 여성)</li>
-            <li style="margin-bottom:8px;"><strong>콘텐츠 포맷:</strong> 인스타그램 릴스 및 가로형 콘텐츠</li>
-            <li><strong>핵심 KPI:</strong> 조회수 40,300+ / 좋아요 1,350+</li>
+            <li style="margin-bottom:8px;"><strong>캠페인명:</strong> TONYMOLY 20주년 팝업스토어 글로벌 바이럴</li>
+            <li style="margin-bottom:8px;"><strong>참여 인원:</strong> 9명 (전원 여성)</li>
+            <li style="margin-bottom:8px;"><strong>콘텐츠 Format:</strong> Vertical Reels (9:16) &amp; Landscape Video (1.91:1)</li>
+            <li><strong>핵심 KPI:</strong> Views 40,300+ / Likes 1,350+</li>
           </ul>
 
           <div class="case-title" style="font-size: 15px; font-weight:800; margin-bottom: 10px; border-top: 1px solid var(--line); padding-top: 16px;">국가별 크리에이터 현황</div>
@@ -406,35 +424,38 @@
         </div>
       </div>
 
-      <!-- SECTION 1: 8 REELS VERTICAL (9:16) -->
+      <!-- 1. VERTICAL REELS SLIDER (9:16) -->
       <div style="margin-top: 35px;">
         <div class="case-title" style="font-size: 18px; font-weight:800; display:flex; justify-content:space-between; align-items:center;">
-          <span>캠페인 비주얼 (8개 릴스 · 9:16)</span>
-          <span style="font-size: 12px; font-weight:normal; color: var(--muted);">* 마우스 드래그 / 좌우 스와이프로 이동 가능합니다.</span>
+          <span>캠페인 비주얼 영상 (9 REELS SLIDER)</span>
+          <span style="font-size: 12px; font-weight:normal; color: var(--muted);">* 마우스를 올리면 슬라이드가 일시정지됩니다.</span>
         </div>
 
-        <div class="carousel-container" id="reelsContainer">
-          <div class="carousel-track" id="reelsTrack"></div>
+        <div class="carousel-container">
+          <div class="carousel-track" id="carousel-track">
+            <!-- 9 Vertical Reel Items -->
+          </div>
         </div>
       </div>
 
-      <!-- SECTION 2: 9 LANDSCAPE FRAMES (1.91:1) -->
+      <!-- 2. LANDSCAPE VIDEO SLIDER (1.91:1) -->
       <div style="margin-top: 35px;">
         <div class="case-title" style="font-size: 18px; font-weight:800; display:flex; justify-content:space-between; align-items:center;">
-          <span>가로형 콘텐츠 비주얼 (9개 프레임 · 1.91:1)</span>
-          <span style="font-size: 12px; font-weight:normal; color: var(--muted);">* 마우스 드래그 / 좌우 스와이프로 이동 가능합니다.</span>
+          <span>캠페인 가로형 비주얼 영상 (9 LANDSCAPE SLIDER)</span>
+          <span style="font-size: 12px; font-weight:normal; color: var(--muted);">* 비율 1.91:1 가로 비디오 슬라이드</span>
         </div>
 
-        <div class="carousel-container" id="landscapeContainer">
-          <div class="carousel-track" id="landscapeTrack"></div>
+        <div class="carousel-container">
+          <div class="carousel-track-landscape" id="carousel-track-landscape">
+            <!-- 9 Landscape Video Items -->
+          </div>
         </div>
       </div>
-
     </section>
 
     <!-- FOOTER -->
     <div class="footer">
-      <strong>토니모리 20주년 팝업스토어 성과 보고서</strong>
+      <strong>TONYMOLY 20th Anniversary Pop-up Store Performance Report</strong>
     </div>
   </div>
 
@@ -472,6 +493,7 @@
         
         if (lines.length > 1) {
           const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, '').toLowerCase());
+          
           let natIndex = headers.findIndex(h => h.includes('nationality') || h.includes('국가') || h.includes('country'));
           if (natIndex === -1) natIndex = 1;
 
@@ -497,11 +519,12 @@
       }
       
       renderNationalityComponents({
-        "인도네시아": 3,
-        "이집트": 2,
-        "필리핀": 1,
-        "스페인": 1,
-        "페루": 1
+        "Indonesia": 3,
+        "Egypt": 2,
+        "Philippines": 1,
+        "Pakistan": 1,
+        "Spain": 1,
+        "Peru": 1
       });
     }
 
@@ -525,7 +548,17 @@
       const ctx = document.getElementById("nationalityPieChart").getContext("2d");
       if (nationalityChart) nationalityChart.destroy();
 
-      const colors = ["#000000", "#333333", "#555555", "#777777", "#999999", "#bbbbbb", "#dddddd", "#10b981", "#f59e0b"];
+      const colors = [
+        "#000000",
+        "#333333",
+        "#555555",
+        "#777777",
+        "#999999",
+        "#bbbbbb",
+        "#dddddd",
+        "#10b981",
+        "#f59e0b"
+      ];
 
       nationalityChart = new Chart(ctx, {
         type: "pie",
@@ -555,53 +588,60 @@
       });
     }
 
-    /* 3. GENERATE 8 REELS (9:16) & 9 LANDSCAPE (1.91:1) CAROUSELS */
-    const reelsTrack = document.getElementById("reelsTrack");
-    let reelsHTML = "";
-    for (let i = 1; i <= 8; i++) {
-      reelsHTML += `
-        <div class="reel-card">
-          <span class="video-badge">릴스 0${i}</span>
-          <video src="media/reel-0${i}.mp4" muted loop autoplay playsinline onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
-          <div class="video-placeholder" style="display:none; flex-direction:column; align-items:center; justify-content:center; height:100%;">
-            <div class="play-icon">▶</div>
-            <strong>릴스 0${i}</strong>
-            <span style="font-size:10px; margin-top:4px;">media/reel-0${i}.mp4</span>
-          </div>
-        </div>
-      `;
-    }
-    reelsTrack.innerHTML = reelsHTML;
-
-    const landscapeTrack = document.getElementById("landscapeTrack");
-    let landscapeHTML = "";
+    /* 3. GENERATE 9 REELS CAROUSEL SLIDER (9:16) */
+    const carouselTrack = document.getElementById("carousel-track");
+    const reelsData = [];
     for (let i = 1; i <= 9; i++) {
-      landscapeHTML += `
-        <div class="landscape-card">
-          <span class="video-badge">가로 프레임 0${i}</span>
-          <video src="media/land-0${i}.mp4" muted loop autoplay playsinline onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
-          <div class="video-placeholder" style="display:none; flex-direction:column; align-items:center; justify-content:center; height:100%;">
+      reelsData.push({ id: i, src: `media/reel-0${i}.mp4` });
+    }
+
+    function createReelCardHTML(reel) {
+      return `
+        <div class="reel-card">
+          <span class="reel-badge">REELS 0${reel.id}</span>
+          <video src="${reel.src}" muted loop autoplay playsinline preload="metadata" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
+          <div class="reel-placeholder" style="display:none; flex-direction:column; align-items:center; justify-content:center; height:100%;">
             <div class="play-icon">▶</div>
-            <strong>가로 프레임 0${i} (1.91:1)</strong>
-            <span style="font-size:10px; margin-top:4px;">media/land-0${i}.mp4</span>
+            <strong>REELS 0${reel.id}</strong>
+            <span style="font-size:10px; margin-top:4px;">media/reel-0${reel.id}.mp4</span>
           </div>
         </div>
       `;
     }
-    landscapeTrack.innerHTML = landscapeHTML;
 
-    /* 4. ENABLE MANUAL MOUSE & TOUCH DRAG / SWIPE FOR CAROUSELS */
-    function enableDragToScroll(container) {
-      let isDown = false;
-      let startX;
-      let scrollLeft;
+    let trackHTML = "";
+    reelsData.forEach(reel => { trackHTML += createReelCardHTML(reel); });
+    reelsData.forEach(reel => { trackHTML += createReelCardHTML(reel); }); // Duplicate for smooth loop
+    carouselTrack.innerHTML = trackHTML;
 
-      container.addEventListener('mousedown', (e) => {
-        isDown = true;
-        startX = e.pageX - container.offsetLeft;
-        scrollLeft = container.scrollLeft;
-      });
-      container.addEventListener('mouseleave', () => { isDown = false; });
-      container.addEventListener('mouseup',Boleh! Boleh infokan dulu, kodenya untuk keperluan apa dan mau pakai bahasa pemrosesan atau *framework* apa? 
 
-*(Contoh: Animasi HTML/CSS/JS, script Python, komponen React, dll.)*
+    /* 4. GENERATE 9 LANDSCAPE CAROUSEL SLIDER (1.91:1) */
+    const carouselTrackLandscape = document.getElementById("carousel-track-landscape");
+    const landscapeData = [];
+    for (let i = 1; i <= 9; i++) {
+      landscapeData.push({ id: i, src: `media/landscape-0${i}.mp4` });
+    }
+
+    function createLandscapeCardHTML(item) {
+      return `
+        <div class="landscape-card">
+          <span class="reel-badge">VIDEO 0${item.id}</span>
+          <video src="${item.src}" muted loop autoplay playsinline preload="metadata" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
+          <div class="reel-placeholder" style="display:none; flex-direction:column; align-items:center; justify-content:center; height:100%;">
+            <div class="play-icon">▶</div>
+            <strong>LANDSCAPE 0${item.id}</strong>
+            <span style="font-size:10px; margin-top:4px;">media/landscape-0${item.id}.mp4</span>
+          </div>
+        </div>
+      `;
+    }
+
+    let landscapeHTML = "";
+    landscapeData.forEach(item => { landscapeHTML += createLandscapeCardHTML(item); });
+    landscapeData.forEach(item => { landscapeHTML += createLandscapeCardHTML(item); }); // Duplicate for smooth loop
+    carouselTrackLandscape.innerHTML = landscapeHTML;
+
+    window.addEventListener("DOMContentLoaded", fetchNationalityData);
+  </script>
+</body>
+</html>
