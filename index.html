@@ -6,6 +6,10 @@
   <title>TONYMOLY 20주년 팝업스토어 성과 리포트</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css" />
+  <!-- Noto Sans KR imported for Vively Logo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #ffffff;
@@ -45,15 +49,17 @@
       border-bottom: 2px solid var(--accent);
       margin-bottom: 30px;
     }
+    
+    /* REVISED LOGO: Vively with Noto Sans KR Font */
     .brand-logo {
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      background: #000;
-      color: #fff;
-      padding: 4px 12px;
-      display: inline-block;
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: #000;
+      font-family: 'Noto Sans KR', sans-serif;
+      line-height: 1;
     }
+    
     .live-status {
       display: inline-flex;
       align-items: center;
@@ -169,12 +175,12 @@
       justify-content: center;
     }
 
-    /* Carousel Slider for 9 Videos */
+    /* Carousel Slider Containers */
     .carousel-container {
       width: 100%;
       overflow: hidden;
       position: relative;
-      margin-top: 20px;
+      margin-top: 15px;
       border-radius: var(--radius);
       padding: 10px 0;
     }
@@ -184,13 +190,28 @@
       width: max-content;
       animation: scroll 25s linear infinite;
     }
-    .carousel-container:hover .carousel-track {
+    .carousel-track-landscape {
+      display: flex;
+      gap: 16px;
+      width: max-content;
+      animation: scroll-landscape 30s linear infinite;
+    }
+    
+    .carousel-container:hover .carousel-track,
+    .carousel-container:hover .carousel-track-landscape {
       animation-play-state: paused;
     }
+    
     @keyframes scroll {
       0% { transform: translateX(0); }
       100% { transform: translateX(calc(-220px * 9 - 16px * 9)); }
     }
+    @keyframes scroll-landscape {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(calc(-320px * 9 - 16px * 9)); }
+    }
+
+    /* Reels Vertical Card (9:16) */
     .reel-card {
       width: 220px;
       aspect-ratio: 9 / 16;
@@ -217,6 +238,35 @@
       height: 100%;
       object-fit: cover;
     }
+
+    /* Landscape Video Card (1.91:1 Ratio) */
+    .landscape-card {
+      width: 320px;
+      aspect-ratio: 1.91 / 1;
+      border: 1.5px solid var(--line-strong);
+      border-radius: var(--radius-sm);
+      background: #f5f5f7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .landscape-card:hover {
+      transform: scale(1.03);
+      border-color: #000;
+    }
+    .landscape-card video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .reel-badge {
       position: absolute;
       top: 10px;
@@ -278,7 +328,8 @@
   <div class="report">
     <!-- TOP BAR -->
     <div class="top-bar">
-      <div class="brand-logo">TONYMOLY</div>
+      <!-- 1. REVISED: Brand logo changed to Vively with Noto Sans KR -->
+      <div class="brand-logo">Vively</div>
       <div class="live-status">
         <span class="live-dot"></span> LIVE DASHBOARD CONNECTED
       </div>
@@ -339,7 +390,7 @@
     <section class="section">
       <h2><span class="num">02 — CAMPAIGN OVERVIEW</span>캠페인 개요 &amp; 국적 분석</h2>
       <div class="section-intro">
-        구글 스프레드시트에 등록된 9명 크리에이터의 국가 분포 및 릴스 콘텐츠 슬라이드 애니메이션입니다.
+        구글 스프레드시트에 등록된 9명 크리에이터의 국가 분포 및 콘텐츠 슬라이드 애니메이션입니다.
       </div>
 
       <div class="grid-2">
@@ -351,13 +402,13 @@
           </div>
         </div>
 
-        <!-- RIGHT: SUMMARY + TABLE BELOW IT (NO PERCENTAGE COLUMN) -->
+        <!-- RIGHT: SUMMARY + TABLE -->
         <div class="card">
           <div class="case-title" style="font-size: 18px; font-weight:800; margin-bottom: 14px;">캠페인 실행 요약</div>
           <ul style="padding-left: 18px; font-size: 14px; margin-bottom: 20px;">
             <li style="margin-bottom:8px;"><strong>캠페인명:</strong> TONYMOLY 20주년 팝업스토어 글로벌 바이럴</li>
             <li style="margin-bottom:8px;"><strong>참여 인원:</strong> 9명 (전원 여성)</li>
-            <li style="margin-bottom:8px;"><strong>콘텐츠 Format:</strong> Instagram Reels (9:16 Vertical Video)</li>
+            <li style="margin-bottom:8px;"><strong>콘텐츠 Format:</strong> Vertical Reels (9:16) &amp; Landscape Video (1.91:1)</li>
             <li><strong>핵심 KPI:</strong> Views 40,300+ / Likes 1,350+</li>
           </ul>
 
@@ -370,23 +421,37 @@
               </tr>
             </thead>
             <tbody id="nationality-table-body">
-              <!-- Live Data from Google Sheets will populate here -->
               <tr><td colspan="2" class="text-center">데이터 로딩 중...</td></tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- 9 REELS VIDEO CAROUSEL SLIDER -->
+      <!-- 1. VERTICAL REELS SLIDER (9:16) -->
       <div style="margin-top: 35px;">
         <div class="case-title" style="font-size: 18px; font-weight:800; display:flex; justify-content:space-between; align-items:center;">
-          <span>CAMPAIGN VISUALS (9 REELS SLIDER)</span>
+          <!-- 2. REVISED: Text changed to 캠페인 비주얼 -->
+          <span>캠페인 비주얼</span>
           <span style="font-size: 12px; font-weight:normal; color: var(--muted);">* 마우스를 올리면 슬라이드가 일시정지됩니다.</span>
         </div>
 
         <div class="carousel-container">
           <div class="carousel-track" id="carousel-track">
-            <!-- 9 Reel Items -->
+            <!-- 9 Vertical Reel Items -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. ADDED: LANDSCAPE VIDEO SLIDER (1.91:1) -->
+      <div style="margin-top: 35px;">
+        <div class="case-title" style="font-size: 18px; font-weight:800; display:flex; justify-content:space-between; align-items:center;">
+          <span>캠페인 가로형 비주얼 영상 (1.91:1 Frame)</span>
+          <span style="font-size: 12px; font-weight:normal; color: var(--muted);">* 비율 1.91:1 가로 비디오 슬라이드 (9 Frames)</span>
+        </div>
+
+        <div class="carousel-container">
+          <div class="carousel-track-landscape" id="carousel-track-landscape">
+            <!-- 9 Landscape Video Items (1.91:1 Ratio) -->
           </div>
         </div>
       </div>
@@ -457,7 +522,6 @@
         console.warn("Using fallback nationality data", e);
       }
       
-      // Fallback Data jika CSV/Network offline
       renderNationalityComponents({
         "Indonesia": 3,
         "Egypt": 2,
@@ -469,7 +533,6 @@
     }
 
     function renderNationalityComponents(counts) {
-      // 1. Render Table Below "캠페인 실행 요약" (Tanpa kolom %)
       const tbody = document.getElementById("nationality-table-body");
       tbody.innerHTML = "";
       
@@ -486,7 +549,6 @@
         tbody.appendChild(tr);
       });
 
-      // 2. Render Pie Chart di Kiri
       const ctx = document.getElementById("nationalityPieChart").getContext("2d");
       if (nationalityChart) nationalityChart.destroy();
 
@@ -530,7 +592,7 @@
       });
     }
 
-    /* 3. GENERATE 9 REELS CAROUSEL SLIDER */
+    /* 3. GENERATE 9 REELS CAROUSEL SLIDER (9:16) */
     const carouselTrack = document.getElementById("carousel-track");
     const reelsData = [];
     for (let i = 1; i <= 9; i++) {
@@ -541,7 +603,7 @@
       return `
         <div class="reel-card">
           <span class="reel-badge">REELS 0${reel.id}</span>
-          <video src="${reel.src}" muted loop autoplay playsinline onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
+          <video src="${reel.src}" muted loop autoplay playsinline preload="metadata" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
           <div class="reel-placeholder" style="display:none; flex-direction:column; align-items:center; justify-content:center; height:100%;">
             <div class="play-icon">▶</div>
             <strong>REELS 0${reel.id}</strong>
@@ -553,10 +615,36 @@
 
     let trackHTML = "";
     reelsData.forEach(reel => { trackHTML += createReelCardHTML(reel); });
-    reelsData.forEach(reel => { trackHTML += createReelCardHTML(reel); }); // Duplicate for smooth loop
+    reelsData.forEach(reel => { trackHTML += createReelCardHTML(reel); }); // Duplicate for smooth continuous loop
     carouselTrack.innerHTML = trackHTML;
 
-    // Load data on start
+
+    /* 4. GENERATE 9 LANDSCAPE CAROUSEL SLIDER (1.91:1) */
+    const carouselTrackLandscape = document.getElementById("carousel-track-landscape");
+    const landscapeData = [];
+    for (let i = 1; i <= 9; i++) {
+      landscapeData.push({ id: i, src: `media/landscape-0${i}.mp4` });
+    }
+
+    function createLandscapeCardHTML(item) {
+      return `
+        <div class="landscape-card">
+          <span class="reel-badge">VIDEO 1.91:1 0${item.id}</span>
+          <video src="${item.src}" muted loop autoplay playsinline preload="metadata" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
+          <div class="reel-placeholder" style="display:none; flex-direction:column; align-items:center; justify-content:center; height:100%;">
+            <div class="play-icon">▶</div>
+            <strong>LANDSCAPE 0${item.id}</strong>
+            <span style="font-size:10px; margin-top:4px;">media/landscape-0${item.id}.mp4</span>
+          </div>
+        </div>
+      `;
+    }
+
+    let landscapeHTML = "";
+    landscapeData.forEach(item => { landscapeHTML += createLandscapeCardHTML(item); });
+    landscapeData.forEach(item => { landscapeHTML += createLandscapeCardHTML(item); }); // Duplicate for smooth continuous loop
+    carouselTrackLandscape.innerHTML = landscapeHTML;
+
     window.addEventListener("DOMContentLoaded", fetchNationalityData);
   </script>
 </body>
